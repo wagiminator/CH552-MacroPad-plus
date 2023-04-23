@@ -264,6 +264,7 @@ void main(void) {
 
   // Init USB HID device
   HID_init();                                     // init USB HID device
+  DLY_ms(500);                                    // wait for Windows
   WDT_start();                                    // start watchdog timer
   NEO_encoder_update();                           // set NeoPixel ring for encoder
 

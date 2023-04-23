@@ -82,7 +82,7 @@ __code USB_CFG_DESCR_HID CfgDescr = {
     .bEndpointAddress   = USB_ENDP_ADDR_EP2_OUT,  // endpoint: 1, direction: OUT (0x02)
     .bmAttributes       = USB_ENDP_TYPE_INTER,    // transfer type: interrupt (0x03)
     .wMaxPacketSize     = EP2_SIZE,               // max packet size
-    .bInterval          = 1                       // polling intervall in ms
+    .bInterval          = 10                      // polling intervall in ms
   }
 };
 
@@ -182,7 +182,7 @@ __code uint8_t ReportDescr[] ={
 	0x15, 0x00,           //     LOGICAL_MINIMUM (0)
 	0x25, 0x01,           //     LOGICAL_MAXIMUM (1)
 	0x75, 0x01,           //     REPORT_SIZE (1)
-	0x95, 0x01,           //     REPORT_COUNT (8)
+	0x95, 0x08,           //     REPORT_COUNT (8)
 	0x81, 0x02,           //     INPUT (Data,Var,Abs)
   0x05, 0x01,           //     USAGE_PAGE (Generic Desktop)
 	0x09, 0x30,           //     USAGE (X)

@@ -18,7 +18,7 @@ The CH552G is a low-cost, enhanced E8051 core microcontroller compatible with th
 - Take the Gerber files and send them to a PCB manufacturer of your choosing. They will use these files to create the circuit board for your device.
 - Once you have the PCB, you can start soldering the components onto it. Use the BOM (bill of materials) and schematic as a guide to make sure everything is connected correctly.
 - Upload the firmware by following the instructions in the next section (see below).
-- To create the case for your device, use the STL files with your 3D printer. Make sure to use clear filament for the keycaps, knob, and ring.
+- To create the case for your device, use the STL files with your 3D printer. Make sure to use transparent filament for the keycaps, knob, and ring.
 - After printing, secure the PCB to the bottom of the case using three self-tapping M2*5mm screws.
 - Next, glue the ring from the bottom into the circular recess in the top of the case.
 - Finally, assemble the case. Place the keycaps onto the switches and the knob onto the rotary encoder. Your device is now ready to use!

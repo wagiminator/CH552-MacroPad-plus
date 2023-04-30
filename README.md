@@ -15,13 +15,13 @@ Connecting the MacroPad to your PC is easy - simply plug it in via USB. It's imm
 The CH552G is a low-cost, enhanced E8051 core microcontroller compatible with the MCS51 instruction set. It has an integrated USB 2.0 controller with full-speed data transfer (12 Mbit/s) and supports up to 64 byte data packets with integrated FIFO and direct memory access (DMA). The CH552G has a factory built-in bootloader so firmware can be uploaded directly via USB without the need for an additional programming device.
 
 ## Buildung Instructions
-- Take the Gerber files and send them to a PCB manufacturer of your choosing. They will use these files to create the circuit board for your device.
-- Once you have the PCB, you can start soldering the components onto it. Use the BOM (bill of materials) and schematic as a guide to make sure everything is connected correctly.
-- Upload the firmware by following the instructions in the next section (see below).
-- To create the case for your device, use the STL files with your 3D printer. Make sure to use transparent filament for the keycaps, knob, and ring.
-- After printing, secure the PCB to the bottom of the case using three self-tapping M2*5mm screws.
-- Next, glue the ring from the bottom into the circular recess in the top of the case.
-- Finally, assemble the case. Place the keycaps onto the switches and the knob onto the rotary encoder. Your device is now ready to use!
+1. Take the Gerber files and send them to a PCB manufacturer of your choosing. They will use these files to create the circuit board for your device.
+2. Once you have the PCB, you can start soldering the components onto it. Use the BOM (bill of materials) and schematic as a guide to make sure everything is connected correctly.
+3. Upload the firmware by following the instructions in the next section (see below).
+4. To create the case for your device, use the STL files with your 3D printer. Make sure to use transparent filament for the keycaps, knob, and ring.
+5. After printing, secure the PCB to the bottom of the case using three self-tapping M2x5mm screws.
+6. Next, glue the ring from the bottom into the circular recess in the top of the case.
+7. Finally, assemble the case. Place the keycaps onto the switches and the knob onto the rotary encoder. Your device is now ready to use!
 
 ![MacroPad_plus_pic2.jpg](https://raw.githubusercontent.com/wagiminator/CH552-MacroPad-plus/main/documentation/MacroPad_plus_pic2.jpg)
 ![MacroPad_plus_pic3.jpg](https://raw.githubusercontent.com/wagiminator/CH552-MacroPad-plus/main/documentation/MacroPad_plus_pic3.jpg)
@@ -29,7 +29,10 @@ The CH552G is a low-cost, enhanced E8051 core microcontroller compatible with th
 ![MacroPad_plus_pic6.jpg](https://raw.githubusercontent.com/wagiminator/CH552-MacroPad-plus/main/documentation/MacroPad_plus_pic6.jpg)
 ![MacroPad_plus_pic7.jpg](https://raw.githubusercontent.com/wagiminator/CH552-MacroPad-plus/main/documentation/MacroPad_plus_pic7.jpg)
 
-# Compiling and Installing Firmware
+# Modifying, Compiling and Installing Firmware
+## Customizing the Firmware
+The definition of the macros and their assignment to individual key events is done by adjusting the firmware accordingly, which allows maximum freedom and flexibility. To do this, open the macropad_plus.c file and edit the section with the macro functions. The source code is commented in such a way that it should be possible to make adjustments even with basic programming skills.
+
 ## Preparing the CH55x Bootloader
 ### Installing Drivers for the CH55x Bootloader
 If you're using Linux, you don't need to install a driver. However, Linux may not give you enough permission by default to upload your code with the USB bootloader. To resolve this issue, you can open a terminal and enter the following commands:

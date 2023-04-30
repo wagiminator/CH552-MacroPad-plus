@@ -24,6 +24,7 @@
 // - Chip:  CH551, CH552 or CH554
 // - Clock: 16 MHz internal
 // - Adjust the firmware parameters in src/config.h if necessary.
+// - Customize the macro functions in the corresponding section below.
 // - Make sure SDCC toolchain and Python3 with PyUSB is installed.
 // - Press BOOT button on the board and keep it pressed while connecting it via USB
 //   with your PC.
@@ -58,8 +59,10 @@ void USB_ISR(void) __interrupt(INT_NO_USB) {
   USB_interrupt();
 }
 
+#pragma disable_warning 110                 // Keep calm, EVELYN!
+
 // ===================================================================================
-// Macros which associate Actions with Events
+// Macro Functions which associate Actions with Events (Customize your MacroPad here!)
 // ===================================================================================
 /*
 // The list of available USB HID functions can be found in src/usb_composite.h
@@ -75,118 +78,156 @@ void USB_ISR(void) __interrupt(INT_NO_USB) {
 // ---------------------------------------------
 
 // Define action(s) if key1 was pressed
-#define KEY1_PRESSED()                                // nothing to do
+inline void KEY1_PRESSED() {
+                                                      // nothing to do
+}
 
 // Define action(s) if key1 was released
-#define KEY1_RELEASED()                               // nothing to do
+inline void KEY1_RELEASED() {
+                                                      // nothing to do
+}
 
 // Define action(s) when key1 is held
-#define KEY1_HOLD()                   \
-  MOUSE_wheel_up();                   \
-  DLY_ms(10);                                         // mouse wheel up and delay
+inline void KEY1_HOLD() {
+  MOUSE_wheel_up();                                   // turn mouse wheel up
+  DLY_ms(10);                                         // delay
+}
 
 // Key 2 example -> ALT + TAB (switch application)
 // -----------------------------------------------
 
 // Define action(s) if key2 was pressed
-#define KEY2_PRESSED()                \
-  KBD_press(KBD_KEY_LEFT_ALT);                        // press ALT
+inline void KEY2_PRESSED() {
+  KBD_press(KBD_KEY_LEFT_ALT);                        // press left ALT key
+}
 
 // Define action(s) if key2 was released
-#define KEY2_RELEASED()               \
-  KBD_release(KBD_KEY_LEFT_ALT);                      // release ALT
+inline void KEY2_RELEASED() {
+  KBD_release(KBD_KEY_LEFT_ALT);                      // release left ALT key
+}
 
 // Define action(s) when key2 is held
-#define KEY2_HOLD()                   \
-  KBD_type(KBD_KEY_TAB);              \
-  DLY_ms(500);                                        // press and release TAB, delay
+inline void KEY2_HOLD() {
+  KBD_type(KBD_KEY_TAB);                              // press and release TAB key
+  DLY_ms(500);                                        // delay
+}
 
 // Key 3 example -> WIN + DOWN ARROW (show apps)
 // ---------------------------------------------
 
 // Define action(s) if key3 was pressed
-#define KEY3_PRESSED()                \
-  KBD_press(KBD_KEY_LEFT_GUI);        \
-  KBD_press(KBD_KEY_DOWN_ARROW);                      // press WIN + DOWN ARROW
+inline void KEY3_PRESSED() {
+  KBD_press(KBD_KEY_LEFT_GUI);                        // press left WIN key
+  KBD_press(KBD_KEY_DOWN_ARROW);                      // press DOWN ARROW key
+}
 
 // Define action(s) if key3 was released
-#define KEY3_RELEASED()               \
-  KBD_release(KBD_KEY_DOWN_ARROW);    \
-  KBD_release(KBD_KEY_LEFT_GUI);                      // release WIN + DOWN ARROW
+inline void KEY3_RELEASED() {
+  KBD_release(KBD_KEY_DOWN_ARROW);                    // release DOWN ARROW key
+  KBD_release(KBD_KEY_LEFT_GUI);                      // release left WIN key
+}
 
 // Define action(s) when key3 is held
-#define KEY3_HOLD()                                   // nothing to do
+inline void KEY3_HOLD() {
+                                                      // nothing to do
+}
 
 // Key 4 example -> CTRL + ALT + DEL (shutdown)
 // --------------------------------------------
 
 // Define action(s) if key4 was pressed
-#define KEY4_PRESSED()                \
-  KBD_press(KBD_KEY_LEFT_CTRL);       \
-  KBD_press(KBD_KEY_LEFT_ALT);        \
-  KBD_press(KBD_KEY_DELETE);                          // press CTRL + ALT + DEL keys
+inline void KEY4_PRESSED() {
+  KBD_press(KBD_KEY_LEFT_CTRL);                       // press left CTRL key
+  KBD_press(KBD_KEY_LEFT_ALT);                        // press left ALT key
+  KBD_press(KBD_KEY_DELETE);                          // press DEL key
+}
 
 // Define action(s) if key4 was released
-#define KEY4_RELEASED()               \
-  KBD_release(KBD_KEY_DELETE);        \
-  KBD_release(KBD_KEY_LEFT_ALT);      \
-  KBD_release(KBD_KEY_LEFT_CTRL);                     // release CTRL + ALT + DEL keys
+inline void KEY4_RELEASED() {
+  KBD_release(KBD_KEY_DELETE);                        // release DEL key
+  KBD_release(KBD_KEY_LEFT_ALT);                      // release left ALT key
+  KBD_release(KBD_KEY_LEFT_CTRL);                     // release left CTRL key
+}
 
 // Define action(s) when key4 is held
-#define KEY4_HOLD()                                   // nothing to do
+inline void KEY4_HOLD() {
+                                                      // nothing to do
+}
 
 // Key 5 example -> Linux open terminal and run shutdown command
 // -------------------------------------------------------------
 
 // Define action(s) if key5 was pressed
-#define KEY5_PRESSED()                \
-  KBD_press(KBD_KEY_LEFT_GUI);        \
-  KBD_type('t');                      \
-  DLY_ms(500);                        \
-  KBD_release(KBD_KEY_LEFT_GUI);      \
-  KBD_print("sudo shutdown -h now");  \
-  KBD_type(KBD_KEY_RETURN);                           // open terminal and run shutdown
+inline void KEY5_PRESSED() {
+  KBD_press(KBD_KEY_LEFT_GUI);                        // press left WIN key
+  KBD_type('t');                                      // press and release 'T' key
+  DLY_ms(500);                                        // wait for terminal to open
+  KBD_release(KBD_KEY_LEFT_GUI);                      // release left WIN key
+  KBD_print("sudo shutdown -h now");                  // type shutdown command
+  KBD_type(KBD_KEY_RETURN);                           // press and release RETURN key
+}
 
 // Define action(s) if key5 was released
-#define KEY5_RELEASED()                               // nothing to do
+inline void KEY5_RELEASED() {
+                                                      // nothing to do
+}
 
 // Define action(s) when key5 is held
-#define KEY5_HOLD()                                   // nothing to do
+inline void KEY5_HOLD() {
+                                                      // nothing to do
+}
 
 // Key 6 example -> mouse wheel down (scroll page)
 // -----------------------------------------------
 
 // Define action(s) if key6 was pressed
-#define KEY6_PRESSED()                                // nothing to do
+inline void KEY6_PRESSED() {
+                                                      // nothing to do
+}
 
 // Define action(s) if key6 was released
-#define KEY6_RELEASED()                               // nothing to do
+inline void KEY6_RELEASED() {
+                                                      // nothing to do
+}
 
 // Define action(s) when key6 is held
-#define KEY6_HOLD()                   \
-  MOUSE_wheel_down();                 \
-  DLY_ms(10);                                         // mouse wheel down and delay
+inline void KEY6_HOLD() {
+  MOUSE_wheel_down();                                 // turn mouse wheel down
+  DLY_ms(10);                                         // delay
+}
 
 // Rotary encoder example -> volume control knob
 // ---------------------------------------------
 
 // Define action(s) if encoder was rotated clockwise
-#define ENC_CW_ACTION()     CON_press(CON_VOL_UP)     // press VOLUME UP key
+inline void ENC_CW_ACTION() {
+  CON_press(CON_VOL_UP);                              // press VOLUME UP key
+}
 
 // Define action(s) after encoder was rotated clockwise
-#define ENC_CW_RELEASED()   CON_release()             // release VOLUME UP KEY
+inline void ENC_CW_RELEASED() {
+  CON_release();                                      // release VOLUME UP KEY
+}
 
 // Define action(s) if encoder was rotated counter-clockwise
-#define ENC_CCW_ACTION()    CON_press(CON_VOL_DOWN)   // press VOLUME DOWN key
+inline void ENC_CCW_ACTION() {
+  CON_press(CON_VOL_DOWN);                            // press VOLUME DOWN key
+}
 
 // Define action(s) after encoder was rotated counter-clockwise
-#define ENC_CCW_RELEASED()  CON_release()             // release VOLUME UP KEY
+inline void ENC_CCW_RELEASED() {
+  CON_release();                                      // release VOLUME DOWN KEY
+}
 
 // Define action(s) if encoder switch was pressed
-#define ENC_SW_PRESSED()    CON_press(CON_VOL_MUTE)   // press VOLUME MUTE key
+inline void ENC_SW_PRESSED() {
+  CON_press(CON_VOL_MUTE);                            // press VOLUME MUTE key
+}
 
 // Define action(s) if encoder switch was released
-#define ENC_SW_RELEASED()   CON_release()             // release VOLUME MUTE key
+inline void ENC_SW_RELEASED() {
+  CON_release();                                      // release VOLUME MUTE key
+}
 
 // ===================================================================================
 // NeoPixel Configuration
